@@ -16,7 +16,7 @@ const getPersonalInfo = async (req, res) => {
 // Create personal information
 const createPersonalInfo = async (req, res) => {
   try {
-    const { name, bio, email, linkedin, github, skills, projects, experience, education, blog, contact } = req.body;
+    const { name, bio, email, linkedin, github, skills, education, contact } = req.body;
 
     // Validation
     if (!name || !bio || !email) {
@@ -30,10 +30,7 @@ const createPersonalInfo = async (req, res) => {
       linkedin,
       github,
       skills,        // Array of skills
-      projects,      // Array of project objects
-      experience,    // Array of experience objects
       education,     // Array of education objects
-      blog,          // Array of blog objects
       contact        // Contact object
     });
 
@@ -47,7 +44,7 @@ const createPersonalInfo = async (req, res) => {
 // Update personal information
 const updatePersonalInfo = async (req, res) => {
   try {
-    const { name, bio, email, linkedin, github, skills, projects, experience, education, blog, contact } = req.body;
+    const { name, bio, email, linkedin, github, skills, projects, education, contact } = req.body;
 
     // Validation
     if (!name || !bio || !email) {
@@ -63,10 +60,7 @@ const updatePersonalInfo = async (req, res) => {
         linkedin,
         github,
         skills,        // Update skills
-        projects,      // Update projects
-        experience,    // Update experience
         education,     // Update education
-        blog,          // Update blog
         contact        // Update contact
       }, 
       { new: true }

@@ -7,15 +7,6 @@ const personalInfoSchema = new mongoose.Schema({
   linkedin: String,
   github: String,
   skills: [String],
-  experience: [
-    {
-      company: String,
-      position: String,
-      startDate: Date,
-      endDate: Date,
-      description: String
-    }
-  ],
   education: [
     {
       institution: String,
