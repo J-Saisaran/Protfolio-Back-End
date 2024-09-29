@@ -6,7 +6,6 @@ const personalInfoSchema = new mongoose.Schema({
   email: String,
   linkedin: String,
   github: String,
-  profilePhoto: String,
   updatedAt: {
     type: Date,
     default: Date.now
