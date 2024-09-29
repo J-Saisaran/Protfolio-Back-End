@@ -6,11 +6,32 @@ const personalInfoSchema = new mongoose.Schema({
   email: String,
   linkedin: String,
   github: String,
+  skills: [String],
+  experience: [
+    {
+      company: String,
+      position: String,
+      startDate: Date,
+      endDate: Date,
+      description: String
+    }
+  ],
+  education: [
+    {
+      institution: String,
+      degree: String,
+      startDate: Date,
+      endDate: Date
+    }
+  ],
+  contact: {
+    phone: String,
+    address: String
+  },
   updatedAt: {
     type: Date,
     default: Date.now
   },
-  
 });
 
 module.exports = mongoose.model('PersonalInfo', personalInfoSchema);

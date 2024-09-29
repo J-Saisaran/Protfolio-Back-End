@@ -16,12 +16,27 @@ const getPersonalInfo = async (req, res) => {
 // Create personal information
 const createPersonalInfo = async (req, res) => {
   try {
-    const { name, bio, email, linkedin, github, profilePhoto } = req.body;
+    const { name, bio, email, linkedin, github, skills, projects, experience, education, blog, contact } = req.body;
+
+    // Validation
     if (!name || !bio || !email) {
       return res.status(400).json({ message: 'Name, bio, and email are required.' });
     }
 
-    const newInfo = new PersonalInfo({ name, bio, email, linkedin, github });
+    const newInfo = new PersonalInfo({
+      name,
+      bio,
+      email,
+      linkedin,
+      github,
+      skills,        // Array of skills
+      projects,      // Array of project objects
+      experience,    // Array of experience objects
+      education,     // Array of education objects
+      blog,          // Array of blog objects
+      contact        // Contact object
+    });
+
     const savedInfo = await newInfo.save();
     res.status(201).json({ message: 'Personal information created successfully', data: savedInfo });
   } catch (error) {
@@ -32,12 +47,31 @@ const createPersonalInfo = async (req, res) => {
 // Update personal information
 const updatePersonalInfo = async (req, res) => {
   try {
-    const { name, bio, email, linkedin, github } = req.body;
+    const { name, bio, email, linkedin, github, skills, projects, experience, education, blog, contact } = req.body;
+
+    // Validation
     if (!name || !bio || !email) {
       return res.status(400).json({ message: 'Name, bio, and email are required for update.' });
     }
 
-    const updatedInfo = await PersonalInfo.findOneAndUpdate({}, req.body, { new: true });
+    const updatedInfo = await PersonalInfo.findOneAndUpdate(
+      {}, 
+      {
+        name,
+        bio,
+        email,
+        linkedin,
+        github,
+        skills,        // Update skills
+        projects,      // Update projects
+        experience,    // Update experience
+        education,     // Update education
+        blog,          // Update blog
+        contact        // Update contact
+      }, 
+      { new: true }
+    );
+
     if (!updatedInfo) {
       return res.status(404).json({ message: 'Personal information not found' });
     }
