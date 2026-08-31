@@ -44,7 +44,7 @@ const createPersonalInfo = async (req, res) => {
 // Update personal information
 const updatePersonalInfo = async (req, res) => {
   try {
-    const { name, bio, email, linkedin, github, skills, projects, education, contact } = req.body;
+    const { name, bio, email, linkedin, github, skills, education, contact } = req.body;
 
     // Validation
     if (!name || !bio || !email) {
